@@ -37,7 +37,18 @@ label {
   margin-bottom: 3px;
 }
 label::before {
-  content: " (>_<;) "
+  content: ">_< ";
+  padding: 5px;
+  background-color: white;
+  border-radius: 3rem;
+  border: 1px solid rgba(135, 135, 135,.6);
+  border-style: solid none none solid;
+  box-shadow: 1px 1px 1.3rem rgba(135, 135, 135,.3);
+  margin-right: 8px;
+}
+label:hover::before {
+  background-color: lightblue;
+  content: "^~^ v";
 }
 
 input {
@@ -46,6 +57,7 @@ input {
   background-color: white;
   box-shadow: 7px 7px 20px rgba(0, 0, 0,.3);
   padding: 5px;
+  margin-bottom: 1.3rem;
 }
 input:focus {
   outline: none;
@@ -58,4 +70,5 @@ textarea {
   background-color: white;
   box-shadow: 7px 7px 20px rgba(0, 0, 0,.3);
   padding: 5px;
+  margin-bottom: 1.3rem;
 }
