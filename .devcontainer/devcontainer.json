@@ -1,0 +1,20 @@
+{
+    "name": "utakata_hiyari_devcontainer",
+    
+    "dockerComposeFile": "compose.yaml",
+    
+    "service": "utakata_hiyari_devcontainer",
+    "workspaceFolder": "/workspace",
+    "remoteUser": "utakata",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "Pandy.bun",
+                "oven.bun-vscode",
+                "biomejs.biome",
+                "dprint.dprint",
+                "Purp1e.purp1e-rust-pack"
+            ]
+        }
+    }
+}

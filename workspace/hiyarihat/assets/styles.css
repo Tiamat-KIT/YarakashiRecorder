@@ -1,0 +1,61 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  position: relative;
+  display: flex;
+  justify-content: "center";
+  align-items: "center";
+  text-underline-position: auto;
+  text-decoration: underline;
+}
+
+button {
+  border: 1px solid transparent;
+  border-radius: 2rem;
+  box-shadow: 1px 1px 30px rgba(0, 0, 0,.3);
+  background-color: white;
+  padding: 8px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button:hover {
+  background-color: lightgray;
+}
+
+div {
+  padding: 3px;
+}
+
+label {
+  border: 1px solid transparent;
+  margin-bottom: 3px;
+}
+label::before {
+  content: " (>_<;) "
+}
+
+input {
+  border: 1px solid #FFFFFF;
+  border-radius: .5rem;
+  background-color: white;
+  box-shadow: 7px 7px 20px rgba(0, 0, 0,.3);
+  padding: 5px;
+}
+input:focus {
+  outline: none;
+  border: none;
+}
+
+textarea {
+  border: 1px solid #FFFFFF;
+  border-radius: .5rem;
+  background-color: white;
+  box-shadow: 7px 7px 20px rgba(0, 0, 0,.3);
+  padding: 5px;
+}

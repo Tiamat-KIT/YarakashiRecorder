@@ -1,0 +1,12 @@
+services:
+  utakata_hiyari_devcontainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: utakata_hiyari_devcontainer_image
+    container_name: utakata_hiyari_devcontainer_container
+    volumes:
+      - ../workspace:/workspace
+    working_dir: /workspace
+    tty: true
+    user: utakata
