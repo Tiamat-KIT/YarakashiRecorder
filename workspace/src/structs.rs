@@ -4,7 +4,7 @@ use dioxus::prelude::*;
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 
-#[derive(Serialize,Deserialize,Validate,Debug,PartialEq,Clone)]
+#[derive(Serialize,Deserialize,Validate,PartialEq,Clone,Debug,Props)]
 pub struct Inputs {
     #[validate(required,length(min = 3))]
     pub title: Option<String>,
@@ -40,12 +40,3 @@ impl Inputs {
         return result
     }
 }
-
-#[derive(Clone,Props,PartialEq)]
-pub struct DefaultProps {
-    children: Element
-}
-
-
-
-

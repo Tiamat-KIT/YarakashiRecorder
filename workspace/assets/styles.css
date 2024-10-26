@@ -1,9 +1,17 @@
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  width: 90vw;
+  margin: auto;
+  background-color: lightcyan;
+}
+
+@media screen and (min-width: 960x) {
+  .card-holder {
+    grid-template-columns:1fr 1fr;
+  }
 }
 
 h1 {
-  position: relative;
   display: flex;
   justify-content: "center";
   align-items: "center";
@@ -54,8 +62,9 @@ label:hover::before {
 input {
   border: 1px solid #FFFFFF;
   border-radius: .5rem;
-  background-color: white;
-  box-shadow: 7px 7px 20px rgba(0, 0, 0,.3);
+  background-color: rgba(255, 255, 255, .7);
+
+  box-shadow: 5px 5px 10px rgba(0, 0, 0,.3);
   padding: 5px;
   margin-bottom: 1.3rem;
 }
@@ -67,8 +76,30 @@ input:focus {
 textarea {
   border: 1px solid #FFFFFF;
   border-radius: .5rem;
-  background-color: white;
-  box-shadow: 7px 7px 20px rgba(0, 0, 0,.3);
+  background-color: rgba(255, 255, 255, .7);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0,.3);
   padding: 5px;
   margin-bottom: 1.3rem;
 }
+
+
+.card {
+  background-color: rgba(255, 255, 255, .7);
+  border: 1px rgba(135, 135, 135,.3);
+  border-style: solid none none solid;
+  border-radius: 1.5rem;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0,.3);
+  text-indent: 0.8rem;
+  padding: 5px;
+}
+
+.card-holder {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.3rem;
+  
+}
+
+
+
+
