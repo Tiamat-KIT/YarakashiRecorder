@@ -1,7 +1,8 @@
 use dioxus::prelude::*;
 use js_sys::JsString;
 use wasm_bindgen::JsCast;
-use web_sys::{console, window, HtmlFormElement};
+use web_sys::HtmlFormElement;
+use gloo::{console, utils::{document,window}};
 
 use crate::structs::Inputs;
 
@@ -87,7 +88,7 @@ pub fn ResultView(prop: Vec<Inputs>) -> Element {
                     }
                     button {
                         onclick: move |event: MouseEvent| {
-                        let document = window().unwrap().document().unwrap();
+                        let document = document();
                         let title = document.get_element_by_id("content-title").unwrap().text_content().unwrap();
                         let descripton = document.get_element_by_id("content-description").unwrap().text_content().unwrap();
                         let opt_info = document.get_element_by_id("content-opt-info").unwrap().text_content().unwrap();
@@ -110,12 +111,12 @@ pub fn FailForm() -> Element {
     let submitter = move |event: FormEvent| {
         let _ = match Inputs::new(&event.data.values()) {
             Ok(safes) => {
-                get_window().alert_with_message("書いててえらいね ^ ^ ");
+                window().alert_with_message("書いててえらいね ^ ^ ");
                 input_list.push(safes);
             },
             Err(e) => {
-                console::error_1(&JsString::from(format!("{:?}",e.errors())));
-                get_window().alert_with_message("めんどくさいかもだけど、ちゃんと書いてね > < ");
+                console::error!(&JsString::from(format!("{:?}",e.errors())));
+                window().alert_with_message("めんどくさいかもだけど、ちゃんと書いてね > < ");
             },
         };
 

@@ -1,11 +1,15 @@
 {
-    "name": "utakata_hiyari_devcontainer",
+    "name": "utakata_all_rust_webapp_devcontainer",
     
     "dockerComposeFile": "compose.yaml",
     
-    "service": "utakata_hiyari_devcontainer",
+    "service": "utakata_all_rust_webapp_devcontainer",
     "workspaceFolder": "/workspace",
     "remoteUser": "utakata",
+    "containerUser": "utakata",
+    "forwardPorts": [
+        1420
+    ],
     "customizations": {
         "vscode": {
             "extensions": [
@@ -13,7 +17,10 @@
                 "oven.bun-vscode",
                 "biomejs.biome",
                 "dprint.dprint",
-                "Purp1e.purp1e-rust-pack"
+                "Purp1e.purp1e-rust-pack",
+                "tauri-apps.tauri-vscode",
+                "rust-lang.rust-analyzer",
+                "DioxusLabs.dioxus"
             ]
         }
     }

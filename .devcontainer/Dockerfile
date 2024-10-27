@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/base:ubuntu
+FROM rust:latest
 
 # ユーザー設定の引数
 ARG USER_NAME=utakata
@@ -25,35 +25,31 @@ RUN apt-get update && apt-get install -y \
     javascriptcoregtk-4.1 \
     libsoup-3.0  \
     webkit2gtk-4.1 \
+    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # ユーザーとグループの作成
-RUN groupadd -g ${GROUP_ID} ${USER_NAME} && \
-    useradd -m -u ${USER_ID} -g ${GROUP_ID} ${USER_NAME}
+RUN groupadd -g ${GROUP_ID} ${USER_NAME} \
+    && useradd -m -u ${USER_ID} -g ${GROUP_ID} ${USER_NAME} \
+    && echo ${USER_NAME} ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/${USER_NAME}\
+    && chmod 0440 /etc/sudoers.d/${USER_NAME} 
 
 # デフォルトシェルをbashに設定
 RUN chsh -s /bin/bash ${USER_NAME} \
     && echo 'export PS1="\e[01;32m\u\e[m:\e[01;34m\w\e[m\$ "' >> /home/${USER_NAME}/.bashrc
 
-# ユーザーの切り替え
-USER ${USER_NAME}
-WORKDIR /home/${USER_NAME}
-
-# Bunのインストール (ユーザー専用)
-RUN curl -fsSL https://bun.sh/install | bash
-ENV PATH="/home/${USER_NAME}/.bun/bin:${PATH}"
-RUN echo 'export PATH="/home/${USER_NAME}/.bun/bin:$PATH"' >> /home/${USER_NAME}/.bashrc
-
-# Rustのインストール (ユーザー専用)
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="/home/${USER_NAME}/.cargo/bin:${PATH}"
-RUN echo 'export PATH="/home/${USER_NAME}/.cargo/bin:$PATH"' >> /home/${USER_NAME}/.bashrc
+# Rustのインストール
+RUN rustup target add wasm32-unknown-unknown 
 
 # dioxusのCLIを入れておく
-RUN cargo install dioxus-cli --locked \ 
-    && cargo install tauri-cli --version "^2.0.0" --locked \
+RUN cargo install dioxus-cli --force \ 
+    && cargo install tauri-cli \
     && cargo install create-tauri-app --locked \
-    && cargo install -f wasm-bindgen-cli --version 0.2.95 \
-    && cargo install dioxus-cli --force
+    && cargo install -f wasm-bindgen-cli --version 0.2.95
+
+# 権限周りの解決がしたい
+USER ${USER_NAME}
+RUN sudo chmod -R 777 /usr/local/cargo
+
 # シェルの設定
 SHELL ["/bin/bash", "-c"]

@@ -1,10 +1,10 @@
 services:
-  utakata_hiyari_devcontainer:
+  utakata_all_rust_webapp_devcontainer:
     build:
       context: .
       dockerfile: Dockerfile
-    image: utakata_hiyari_devcontainer_image
-    container_name: utakata_hiyari_devcontainer_container
+    image: utakata_all_rust_webapp_devcontainer_image
+    container_name: utakata_all_rust_webapp_devcontainer_container
     volumes:
       - ../workspace:/workspace
     working_dir: /workspace
