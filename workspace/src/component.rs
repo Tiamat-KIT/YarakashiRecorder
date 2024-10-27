@@ -87,9 +87,10 @@ pub fn ResultView(prop: Vec<Inputs>) -> Element {
                     }
                     button {
                         onclick: move |event: MouseEvent| {
-                        let title = element_in_text("content-title");
-                        let descripton = element_in_text("content-description");
-                        let opt_info = element_in_text("content-opt-info");
+                        let document = window().unwrap().document().unwrap();
+                        let title = document.get_element_by_id("content-title").unwrap().text_content().unwrap();
+                        let descripton = document.get_element_by_id("content-description").unwrap().text_content().unwrap();
+                        let opt_info = document.get_element_by_id("content-opt-info").unwrap().text_content().unwrap();
                         form_eval.send("pdf_content".into());
                     },
                         "PDF化する!"
