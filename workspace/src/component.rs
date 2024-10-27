@@ -9,14 +9,15 @@ use crate::structs::Inputs;
 pub fn ResultView(prop: Vec<Inputs>) -> Element {
     let form_eval = eval(r#"
         let msg = await dioxus.recv();
-        console.log(msg)
+        let pdf = document.getElementById(msg)
+        html2pdf(pdf).save("sample.pdf")
     "#);
     let to_pdf = move |event: MouseEvent| {
         let document = window().unwrap().document().unwrap();
         let title = document.get_element_by_id("content-title").unwrap().text_content().unwrap();
         let descripton = document.get_element_by_id("content-description").unwrap().text_content().unwrap();
         let opt_info = document.get_element_by_id("content-opt-info").unwrap().text_content().unwrap();
-        form_eval.send(format!("{} {} {}",title,descripton,opt_info).into());
+        form_eval.send("pdf_elem".into());
     };
     
     match prop.len() {
@@ -30,6 +31,7 @@ pub fn ResultView(prop: Vec<Inputs>) -> Element {
             return rsx!{
                 div {
                     article {
+                        id: "pdf_elem",
                         r"class": "card",
                         margin_top: "5vh",
                         h1 {
