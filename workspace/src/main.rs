@@ -1,7 +1,6 @@
 mod app;
 mod component;
 mod structs;
-mod util;
 
 use app::App;
 use dioxus::prelude::*;
