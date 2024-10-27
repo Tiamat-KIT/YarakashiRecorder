@@ -3,7 +3,9 @@
   width: 90vw;
   margin: auto;
   background-color: lightcyan;
+  padding: auto;
 }
+
 
 @media screen and (min-width: 960x) {
   .card-holder {
@@ -101,5 +103,30 @@ textarea {
 }
 
 
+.pdf_content {
+  background-color:cornsilk;
+  border-radius: 0px;
+  border: 1px solid black;
+  box-shadow: 15px 15px 20px rgba(0, 0, 0, 0.4);
+}
 
 
+
+.pdf_content h1 {
+  font-size: 1.6rem;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pdf_content h2 {
+  margin: 0px;
+  padding: 0px
+}
+
+.pdf_content h3 {
+  margin: 0px;
+  margin: 0px;
+}
